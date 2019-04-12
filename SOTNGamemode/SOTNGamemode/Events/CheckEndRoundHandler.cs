@@ -42,13 +42,13 @@ namespace SOTNGamemode.Events
                 {
                     ev.Status = ROUND_END_STATUS.ON_GOING;
                 }
-                else if (scpAlive && !humanAlive == false)
+                else if (scpAlive && humanAlive == false)
                 {
                     ev.Status = ROUND_END_STATUS.SCP_VICTORY;
                 }
                 else if (scpAlive == false && humanAlive)
                 {
-                    ev.Status = ROUND_END_STATUS.MTF_VICTORY;
+                    ev.Status = ROUND_END_STATUS.OTHER_VICTORY;
                 }
             }
 

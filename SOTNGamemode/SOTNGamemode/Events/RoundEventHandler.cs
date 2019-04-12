@@ -60,11 +60,11 @@ namespace SOTNGamemode.Events
                 {
                     player.ChangeRole(Role.CLASSD, true, true, true);
                 }
-                List<Door> doors = plugin.Server.Map.GetDoors();
+                /*List<Door> doors = plugin.Server.Map.GetDoors();
                 foreach(Door d in doors)
                 {
                     plugin.Info(d.Name);
-                }
+                }*/
             }
         }
 
