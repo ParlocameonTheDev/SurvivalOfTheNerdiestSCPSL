@@ -1,0 +1,8 @@
+C:\Users\Parker\source\repos\SOTNGamemode\SOTNGamemode\obj\Debug\SOTNGamemode.csprojAssemblyReference.cache
+C:\Users\Parker\source\repos\SOTNGamemode\SOTNGamemode\obj\Debug\SOTNGamemode.csproj.CoreCompileInputs.cache
+C:\Users\Parker\source\repos\SOTNGamemode\SOTNGamemode\bin\Debug\SOTNGamemode.dll
+C:\Users\Parker\source\repos\SOTNGamemode\SOTNGamemode\bin\Debug\SOTNGamemode.pdb
+C:\Users\Parker\source\repos\SOTNGamemode\SOTNGamemode\bin\Debug\Smod2.dll
+C:\Users\Parker\source\repos\SOTNGamemode\SOTNGamemode\obj\Debug\SOTNGamemode.csproj.CopyComplete
+C:\Users\Parker\source\repos\SOTNGamemode\SOTNGamemode\obj\Debug\SOTNGamemode.dll
+C:\Users\Parker\source\repos\SOTNGamemode\SOTNGamemode\obj\Debug\SOTNGamemode.pdb

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOTNGamemode", "SOTNGamemode\SOTNGamemode.csproj", "{A81B94E4-6B7F-4B22-ADAF-B9AED9B36272}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A81B94E4-6B7F-4B22-ADAF-B9AED9B36272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A81B94E4-6B7F-4B22-ADAF-B9AED9B36272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A81B94E4-6B7F-4B22-ADAF-B9AED9B36272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A81B94E4-6B7F-4B22-ADAF-B9AED9B36272}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B864B3E-17BB-4E83-86A4-219F4077FC7F}
+	EndGlobalSection
+EndGlobal
