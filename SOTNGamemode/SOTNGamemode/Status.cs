@@ -9,6 +9,7 @@ namespace SOTNGamemode
     class Status
     {
         public static bool gamemodeEnabled = false;
+        public static bool lockdownActive = false;
         public static gameTypes activeGameType = gameTypes.NoType;
         public enum gameTypes
         {

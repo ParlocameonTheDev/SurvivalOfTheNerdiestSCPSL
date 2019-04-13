@@ -15,6 +15,7 @@ namespace SOTNGamemode
         {
             if(Status.activeGameType==Status.gameTypes.Regular)
             {
+                Status.lockdownActive = true;
                 if (toggle) {
                     if (Status.activeGameType == Status.gameTypes.Regular)
                     {
@@ -28,6 +29,7 @@ namespace SOTNGamemode
                 }
                 if(!toggle)
                 {
+                    Status.lockdownActive = false;
                     if(Status.activeGameType==Status.gameTypes.Regular)
                     {
                         foreach (Elevator elevator in plugin.Server.Map.GetElevators().Where(elevator => elevator.ElevatorType == ElevatorType.LiftA || elevator.ElevatorType == ElevatorType.LiftB))
