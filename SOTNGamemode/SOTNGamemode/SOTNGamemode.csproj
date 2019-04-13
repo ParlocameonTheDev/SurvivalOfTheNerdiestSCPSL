@@ -51,6 +51,7 @@
     <Compile Include="Events\DoorEventHandler.cs" />
     <Compile Include="Events\GeneratorHandler.cs" />
     <Compile Include="Events\InfectionHandler.cs" />
+    <Compile Include="Events\LCZHandler.cs" />
     <Compile Include="Events\RespawnHandler.cs" />
     <Compile Include="Events\RoundEventHandler.cs" />
     <Compile Include="Functions.cs" />

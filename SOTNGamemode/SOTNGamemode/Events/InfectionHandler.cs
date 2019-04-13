@@ -31,7 +31,6 @@ namespace SOTNGamemode.Events
             {
                 ev.Player.ChangeRole(Role.SCP_049_2, true, false, true);
                 ev.Player.SetHealth(plugin.GetConfigInt("scp049-2_hp"));
-                plugin.ConfigManager.
             }
         }
     }
