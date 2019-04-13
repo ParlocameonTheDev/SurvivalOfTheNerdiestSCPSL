@@ -23,7 +23,7 @@ namespace SOTNGamemode.Events
         {
             if (ev.DamageTypeVar == DamageType.SCP_049_2 && ev.Killer.TeamRole.Role == Role.SCP_049_2)
             {
-                ev.Player.ChangeRole(Role.SCP_049_2, true, true, true);
+                ev.Player.ChangeRole(Role.SCP_049_2, true, false, true);
             }
             
         }

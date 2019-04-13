@@ -21,7 +21,7 @@ namespace SOTNGamemode.Events
         public void OnRoundStart(RoundStartEvent ev)
         {
             Map map = plugin.Server.Map;
-            String gameInstructions = "Each round consists of at least one 049-2, with a max of 4.\nIf one of the 049-2 kills you, you become one of them.\nIf you want to survive, either kill all of the zombies and supress the infection, or power on all of the generators to lift the lockdown and get an O5,\nwhich can open the entrance zone.";
+            String gameInstructions = "\nEach round consists of at least one 049-2, with a max of 4.\nIf one of the 049-2 kills you, you become one of them.\nIf you want to survive, either kill all of the zombies and supress the infection, or power on all of the generators to lift the lockdown and get an O5,\nwhich can open the entrance zone.";
 
             if(Status.gamemodeEnabled)
             {
