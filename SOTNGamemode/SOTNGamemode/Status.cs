@@ -10,6 +10,8 @@ namespace SOTNGamemode
     {
         public static bool gamemodeEnabled = false;
         public static bool lockdownActive = false;
+        public static int generatorsFinished = 0;
+        public static bool HaltLCZD = false;
         public static gameTypes activeGameType = gameTypes.NoType;
         public enum gameTypes
         {

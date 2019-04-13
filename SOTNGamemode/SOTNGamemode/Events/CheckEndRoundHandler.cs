@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SMTeam = Smod2.API.Team;
 
 namespace SOTNGamemode.Events
 {
@@ -28,11 +29,11 @@ namespace SOTNGamemode.Events
                 bool humanAlive = false;
                 foreach (Player player in ev.Server.GetPlayers())
                 {
-                    if (player.TeamRole.Team == Smod2.API.Team.SCP)
+                    if (player.TeamRole.Team == SMTeam.SCP)
                     {
                         scpAlive = true;
                     }
-                    if (player.TeamRole.Team == Team.CLASSD)
+                    if (player.TeamRole.Team == SMTeam.CLASSD)
                     {
                         humanAlive = true;
                     }
@@ -50,7 +51,7 @@ namespace SOTNGamemode.Events
                 }
                 else if (scpAlive == false && humanAlive)
                 {
-                    ev.Status = ROUND_END_STATUS.CI_VICTORY;
+                    ev.Status = ROUND_END_STATUS.MTF_VICTORY;
                     return;
                 }
 

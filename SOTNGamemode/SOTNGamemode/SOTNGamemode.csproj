@@ -32,6 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Downloads\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>D:\Steam\steamapps\common\SCP Secret Laboratory\SCPSL_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
     <Reference Include="Smod2">
       <HintPath>..\..\..\..\Downloads\Smod2.dll</HintPath>
     </Reference>
@@ -43,15 +50,21 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>D:\Steam\steamapps\common\SCP Secret Laboratory\SCPSL_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>D:\Steam\steamapps\common\SCP Secret Laboratory\SCPSL_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\EnableGamemode.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="Events\CheckEndRoundHandler.cs" />
     <Compile Include="Events\ConfigHandler.cs" />
     <Compile Include="Events\DoorEventHandler.cs" />
     <Compile Include="Events\GeneratorHandler.cs" />
     <Compile Include="Events\InfectionHandler.cs" />
-    <Compile Include="Events\LCZHandler.cs" />
     <Compile Include="Events\RespawnHandler.cs" />
     <Compile Include="Events\RoundEventHandler.cs" />
     <Compile Include="Functions.cs" />

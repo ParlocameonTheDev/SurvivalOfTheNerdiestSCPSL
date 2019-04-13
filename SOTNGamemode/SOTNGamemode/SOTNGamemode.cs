@@ -18,7 +18,6 @@ namespace SOTNGamemode
 		name = "Survival of The Nerdiest gamemode",
 		description = "SCP-049-2 have infected the facility. Survive!",
 		id = "binaryassault.gamemode.sotn",
-		configPrefix = "sotn",
 		langFile = "OwnerFClass",
 		version = "1.0",
 		SmodMajor = 3,
@@ -27,6 +26,7 @@ namespace SOTNGamemode
     )]
     public class SOTNGamemode : Plugin
     {
+        public static Config pluginConfig;
         public override void OnDisable()
         {
             Info("Survival of The Nerdiest disabled");
@@ -34,6 +34,8 @@ namespace SOTNGamemode
         public override void OnEnable()
         {
             Info("Survival of The Nerdiest enabled");
+            pluginConfig = new Config(this);
+            pluginConfig.ReloadConfig();
         }
 
         public override void Register()
@@ -51,16 +53,18 @@ namespace SOTNGamemode
         }
         private void RegisterConfigs()
         {
-            this.AddConfig(new ConfigSetting("enabledatstart", false, true, "Enables gamemode automatically at start"));
+            this.AddConfig(new ConfigSetting("sotn_enabledatstart", false, true, "Enables gamemode automatically at start"));
+            this.AddConfig(new ConfigSetting("sotn_scp049-2_hp", 675, true, "Enables gamemode automatically at start"));
+            this.AddConfig(new ConfigSetting("sotn_scp049-2_damage", 675, true, "Enables gamemode automatically at start"));
         }
         private void RegisterEvents()
         {
             this.AddEventHandlers(new RoundEventHandler(this));
             this.AddEventHandlers(new InfectionHandler(this));
             this.AddEventHandlers(new GeneratorHandler(this));
-            this.AddEventHandler(typeof(IEventHandlerLCZDecontaminate), new LCZHandler(this));
+            //this.AddEventHandler(typeof(IEventHandlerLCZDecontaminate), new LCZHandler(this));
             this.AddEventHandler(typeof(IEventHandlerDoorAccess), new DoorEventHandler(this));
-            this.AddEventHandler(typeof(IEventHandlerPlayerDie), new InfectionHandler(this));
+            this.AddEventHandlers(new InfectionHandler(this));
             this.AddEventHandler(typeof(IEventHandlerTeamRespawn), new RespawnHandler(this));
             this.AddEventHandlers(new ConfigHandler(this));
             this.AddEventHandler(typeof(IEventHandlerCheckRoundEnd), new CheckEndRoundHandler(this));

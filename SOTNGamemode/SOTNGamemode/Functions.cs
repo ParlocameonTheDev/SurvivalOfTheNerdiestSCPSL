@@ -1,9 +1,11 @@
-﻿using Smod2.API;
+﻿using MEC;
+using Smod2.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SMDoor = Smod2.API.Door;
 
 namespace SOTNGamemode
 {
@@ -41,9 +43,18 @@ namespace SOTNGamemode
             }
         }
 
+        public static IEnumerator<float> ResetLCZ()
+        {
+            while (Status.HaltLCZD)
+            {
+                PlayerManager.localPlayer.GetComponent<DecontaminationLCZ>().time = 0f;
+                yield return Timing.WaitForSeconds(180);
+            }
+        }
+
         public static void changeDoorPermissions(string doorname)
         {
-            foreach (Door d in plugin.Server.Map.GetDoors().Where(d => doorname==d.Name)){
+            foreach (SMDoor d in plugin.Server.Map.GetDoors().Where(d => doorname==d.Name)){
                 
             }
         }

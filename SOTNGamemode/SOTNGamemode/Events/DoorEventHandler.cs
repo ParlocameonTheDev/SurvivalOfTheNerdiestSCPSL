@@ -8,6 +8,7 @@ using Smod2.API;
 using Smod2.EventHandlers;
 using Smod2.Events;
 using Smod2.EventSystem.Events;
+using SMTeam = Smod2.API.Team;
 
 namespace SOTNGamemode.Events
 {
@@ -27,10 +28,10 @@ namespace SOTNGamemode.Events
             {
                 if (ev.Door.Name == "CHECKPOINT_ENT")
                 {
-                    if (player.GetCurrentItem().ItemType == ItemType.O5_LEVEL_KEYCARD) ev.Allow = true;
-                    else if (player.TeamRole.Team == Team.SCP && Status.lockdownActive) ev.Allow = false;
-                    else if (player.TeamRole.Team == Team.SCP && Status.lockdownActive == false) ev.Allow = true;
-                    else if (player.GetBypassMode()) ev.Allow = true;
+                    if (player.GetCurrentItem().ItemType == ItemType.O5_LEVEL_KEYCARD) { ev.Allow = true; return; }
+                    else if (player.TeamRole.Team == SMTeam.SCP && Status.lockdownActive) { ev.Allow = false; return; }
+                    else if (player.TeamRole.Team == SMTeam.SCP && Status.lockdownActive == false) { ev.Allow = true; return; }
+                    else if (player.GetBypassMode()) { ev.Allow = true; return; }
                     else ev.Allow = false;
                 }
             }

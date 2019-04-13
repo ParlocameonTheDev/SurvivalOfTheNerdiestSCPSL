@@ -26,12 +26,8 @@ namespace SOTNGamemode.Events
         {
             if (Status.gamemodeEnabled)
             {
-                Thread.Sleep(500);
-                foreach (Player player in ev.PlayerList)
-                {
-                    player.ChangeRole(Role.SPECTATOR, true, false, false);
-                }
-                return;
+                ev.SpawnChaos = true;
+                ev.PlayerList = new List<Player>();
             }
         }
     }

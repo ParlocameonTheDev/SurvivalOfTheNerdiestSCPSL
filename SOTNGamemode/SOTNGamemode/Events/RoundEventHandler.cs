@@ -1,4 +1,5 @@
-﻿using Smod2.API;
+﻿using MEC;
+using Smod2.API;
 using Smod2.EventHandlers;
 using Smod2.Events;
 using System;
@@ -20,11 +21,14 @@ namespace SOTNGamemode.Events
 
         public void OnRoundStart(RoundStartEvent ev)
         {
+            SOTNGamemode.pluginConfig.ReloadConfig();
             Map map = plugin.Server.Map;
             String gameInstructions = "\nEach round consists of at least one 049-2, with a max of 4.\nIf one of the 049-2 kills you, you become one of them.\nIf you want to survive, either kill all of the zombies and supress the infection, or power on all of the generators to lift the lockdown and get an O5,\nwhich can open the entrance zone.";
 
             if(Status.gamemodeEnabled)
             {
+                Status.HaltLCZD = true;
+                Timing.RunCoroutine(Functions.ResetLCZ());
                 List<Player> players = ev.Server.GetPlayers();
                 if (Status.activeGameType == Status.gameTypes.Regular)
                 {
@@ -59,14 +63,14 @@ namespace SOTNGamemode.Events
                         players.Remove(players[newfriendIndex]);
                      
                     }
-                    List<RoomType> genericExcluded = new List<RoomType>(new RoomType[] {RoomType.HCZ_ARMORY,RoomType.SCP_106,RoomType.SCP_939,RoomType.TESLA_GATE,RoomType.MICROHID,RoomType.CHECKPOINT_B,RoomType.CHECKPOINT_A,RoomType.SCP_049});
+                    List<RoomType> genericExcluded = new List<RoomType>(new RoomType[] {RoomType.HCZ_ARMORY,RoomType.SCP_106,RoomType.SCP_939,RoomType.TESLA_GATE,RoomType.MICROHID,RoomType.CHECKPOINT_B,RoomType.CHECKPOINT_A,RoomType.SCP_049, RoomType.ENTRANCE_CHECKPOINT, RoomType.SCP_096 });
                     List<Vector> humanSpawnPoints = Functions.FetchSpawnpoints(ZoneType.HCZ,genericExcluded);
                     int spawnPIndex = 0;
                     foreach (Player player in playersToInfect)
                     {
 
                         player.ChangeRole(Role.SCP_049_2, true, false, true);
-                        
+                        player.SetHealth(SOTNGamemode.pluginConfig.scp0492hp);
                         player.Teleport(plugin.Server.Map.GetSpawnPoints(Role.SCP_049)[0]);
                         
 
@@ -80,7 +84,7 @@ namespace SOTNGamemode.Events
                         player.Teleport(humanSpawnPoints[rSI]);
 
                     }
-                    List<RoomType> generatorExcluded = new List<RoomType>(new RoomType[] { RoomType.HCZ_ARMORY, RoomType.SCP_939, RoomType.TESLA_GATE, RoomType.MICROHID, RoomType.CHECKPOINT_B, RoomType.CHECKPOINT_A, RoomType.SCP_372,RoomType.SERVER_ROOM});
+                    List<RoomType> generatorExcluded = new List<RoomType>(new RoomType[] { RoomType.HCZ_ARMORY, RoomType.SCP_939, RoomType.TESLA_GATE, RoomType.MICROHID, RoomType.CHECKPOINT_B, RoomType.CHECKPOINT_A, RoomType.SCP_372,RoomType.SERVER_ROOM,RoomType.ENTRANCE_CHECKPOINT,RoomType.SCP_096});
                     List<Vector> tabletSpawnPoints = Functions.FetchSpawnpoints(ZoneType.HCZ, generatorExcluded);
                     Random tabletSpawnRNG = new Random();
                     for(int i=0;i<5;i++)
@@ -99,7 +103,10 @@ namespace SOTNGamemode.Events
 
         public void OnRoundEnd(RoundEndEvent ev)
         {
-
+            if(Status.gamemodeEnabled)
+            {
+                Status.HaltLCZD = false;
+            }
         }
 
         public void OnRoundRestart(RoundRestartEvent ev)

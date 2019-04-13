@@ -22,7 +22,13 @@ namespace SOTNGamemode.Events
         {
             if (Status.gamemodeEnabled)
             {
-                Functions.Lockdown(false);
+                Status.generatorsFinished++;
+                if (Status.generatorsFinished == 5)
+                {
+                    Status.generatorsFinished = 0;
+                    plugin.Server.Map.AnnounceCustomMessage("Lockdown disabled");
+                    plugin.Server.Map.Broadcast(10, "Lockdown disabled, LCZ IS OPEN!", false);
+                }
             }
         }
     }
