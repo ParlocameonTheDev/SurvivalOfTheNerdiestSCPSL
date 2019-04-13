@@ -34,7 +34,7 @@ namespace SOTNGamemode.Events
             if (ev.Damage >= ev.Player.GetHealth() && ev.DamageType == DamageType.SCP_049_2 && ev.Attacker.TeamRole.Role == Role.SCP_049_2)
             {
                 ev.Damage = 0;
-                ev.Player.ChangeRole(Role.SCP_049_2, true, false, true);
+                ev.Player.ChangeRole(Role.SCP_049_2, true, false, false);
                 ev.Player.SetHealth(SOTNGamemode.pluginConfig.scp0492hp);
             }
         }

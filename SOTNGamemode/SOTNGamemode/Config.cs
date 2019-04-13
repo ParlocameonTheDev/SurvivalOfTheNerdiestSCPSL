@@ -17,8 +17,8 @@ namespace SOTNGamemode
         }
         public void ReloadConfig()
         {
-            int scp0492hp = plugin.GetConfigInt("sotn_scp049-2_hp");
-            int scp0492damage = plugin.GetConfigInt("sotn_scp049-2_damage");
+            scp0492hp = plugin.GetConfigInt("sotn_scp049-2_hp");
+            scp0492damage = plugin.GetConfigInt("sotn_scp049-2_damage");
         }
     }
 }
