@@ -38,6 +38,7 @@ namespace SOTNGamemode
 
         public override void Register()
         {
+            Functions.plugin = this;
             RegisterConfigs();
             RegisterEvents();
             RegisterCommands();

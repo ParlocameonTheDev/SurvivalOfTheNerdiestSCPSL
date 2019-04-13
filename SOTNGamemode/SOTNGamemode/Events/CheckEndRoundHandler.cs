@@ -22,37 +22,49 @@ namespace SOTNGamemode.Events
         
         public void OnCheckRoundEnd(CheckRoundEndEvent ev)
         {
-            bool scpAlive = false;
-            bool humanAlive = true;
-            foreach (Player player in ev.Server.GetPlayers())
+            if (Status.gamemodeEnabled)
             {
-                if (player.TeamRole.Team == Smod2.API.Team.SCP)
+                bool scpAlive = false;
+                bool humanAlive = false;
+                foreach (Player player in ev.Server.GetPlayers())
                 {
-                    scpAlive = true; continue;
+                    if (player.TeamRole.Team == Smod2.API.Team.SCP)
+                    {
+                        scpAlive = true; continue;
+                    }
+                    else if (player.TeamRole.Team == Team.CLASSD)
+                    {
+                        humanAlive = true;
+                    }
                 }
-                else if (player.TeamRole.Team == Team.CLASSD)
-                {
-                    humanAlive = true;
-                }
-            }
 
-            if (ev.Server.GetPlayers().Count > 1)
-            {
-                if (scpAlive && humanAlive)
+                if (ev.Server.GetPlayers().Count > 1)
                 {
-                    ev.Status = ROUND_END_STATUS.ON_GOING;
+                    if (scpAlive && humanAlive)
+                    {
+                        ev.Status = ROUND_END_STATUS.ON_GOING;
+                        return;
+                    }
+                    else if (scpAlive && humanAlive == false)
+                    {
+                        ev.Status = ROUND_END_STATUS.SCP_VICTORY;
+                        return;
+                    }
+                    else if (scpAlive == false && humanAlive)
+                    {
+                        ev.Status = ROUND_END_STATUS.CI_VICTORY;
+                        return;
+                    }
                 }
-                else if (scpAlive && humanAlive == false)
+                else
                 {
-                    ev.Status = ROUND_END_STATUS.SCP_VICTORY;
+                    ev.Status = ROUND_END_STATUS.NO_VICTORY;
+                    return;
                 }
-                else if (scpAlive == false && humanAlive)
-                {
-                    ev.Status = ROUND_END_STATUS.OTHER_VICTORY;
-                }
-            }
 
-            ev.Status = ROUND_END_STATUS.ON_GOING;
+                ev.Status = ROUND_END_STATUS.ON_GOING;
+                return;
+            }
         }
     }
 }
