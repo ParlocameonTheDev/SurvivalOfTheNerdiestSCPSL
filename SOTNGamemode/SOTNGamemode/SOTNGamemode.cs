@@ -56,6 +56,9 @@ namespace SOTNGamemode
         private void RegisterEvents()
         {
             this.AddEventHandlers(new RoundEventHandler(this));
+            this.AddEventHandlers(new InfectionHandler(this));
+            this.AddEventHandlers(new GeneratorHandler(this));
+            this.AddEventHandler(typeof(IEventHandlerDoorAccess), new DoorEventHandler(this));
             this.AddEventHandler(typeof(IEventHandlerPlayerDie), new InfectionHandler(this));
             this.AddEventHandler(typeof(IEventHandlerTeamRespawn), new RespawnHandler(this));
             this.AddEventHandlers(new ConfigHandler(this));

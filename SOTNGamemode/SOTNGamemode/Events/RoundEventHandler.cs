@@ -59,7 +59,7 @@ namespace SOTNGamemode.Events
                         players.Remove(players[newfriendIndex]);
                      
                     }
-                    List<RoomType> genericExcluded = new List<RoomType>(new RoomType[] {RoomType.HCZ_ARMORY,RoomType.SCP_106,RoomType.SCP_939,RoomType.TESLA_GATE,RoomType.MICROHID,RoomType.CHECKPOINT_B,RoomType.CHECKPOINT_A});
+                    List<RoomType> genericExcluded = new List<RoomType>(new RoomType[] {RoomType.HCZ_ARMORY,RoomType.SCP_106,RoomType.SCP_939,RoomType.TESLA_GATE,RoomType.MICROHID,RoomType.CHECKPOINT_B,RoomType.CHECKPOINT_A,RoomType.SCP_049});
                     List<Vector> humanSpawnPoints = Functions.FetchSpawnpoints(ZoneType.HCZ,genericExcluded);
                     int spawnPIndex = 0;
                     foreach (Player player in playersToInfect)
@@ -71,11 +71,13 @@ namespace SOTNGamemode.Events
                         
 
                     }
+                    Random randomSpawnIndex = new Random();
                     foreach (Player player in players)
                     {
                         player.ChangeRole(Role.CLASSD, true, false, true);
                         if (humanSpawnPoints.Count == spawnPIndex) spawnPIndex = 0;
-                        player.Teleport(humanSpawnPoints[spawnPIndex]);
+                        int rSI = randomSpawnIndex.Next(0, humanSpawnPoints.Count);
+                        player.Teleport(humanSpawnPoints[rSI]);
 
                     }
                     List<RoomType> generatorExcluded = new List<RoomType>(new RoomType[] { RoomType.HCZ_ARMORY, RoomType.SCP_939, RoomType.TESLA_GATE, RoomType.MICROHID, RoomType.CHECKPOINT_B, RoomType.CHECKPOINT_A, RoomType.SCP_372,RoomType.SERVER_ROOM});
@@ -88,6 +90,7 @@ namespace SOTNGamemode.Events
                         tabletSpawnPoints.Remove(tabletSpawnPoints[tabletSpawnIndex]);
                     }
                     Functions.Lockdown(true);
+                    
                     map.Broadcast(10, "Welcome to <b>Survival of The Nerdiest!</b>\nIf you've never played this gamemode before, please press `/~", false);
                 }
                 

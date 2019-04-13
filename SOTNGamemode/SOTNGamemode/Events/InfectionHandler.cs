@@ -10,7 +10,7 @@ using Smod2.API;
 
 namespace SOTNGamemode.Events
 {
-    class InfectionHandler : IEventHandlerPlayerDie
+    class InfectionHandler : IEventHandlerPlayerDie, IEventHandlerPlayerHurt
     {
         private SOTNGamemode plugin;
 
@@ -21,11 +21,18 @@ namespace SOTNGamemode.Events
 
         public void OnPlayerDie(PlayerDeathEvent ev)
         {
-            if (ev.DamageTypeVar == DamageType.SCP_049_2 && ev.Killer.TeamRole.Role == Role.SCP_049_2)
+            
+            
+        }
+
+        public void OnPlayerHurt(PlayerHurtEvent ev)
+        {
+            if (ev.Damage > ev.Player.GetHealth() && ev.DamageType == DamageType.SCP_049_2 && ev.Attacker.TeamRole.Role == Role.SCP_049_2)
             {
                 ev.Player.ChangeRole(Role.SCP_049_2, true, false, true);
+                ev.Player.SetHealth(plugin.GetConfigInt("scp049-2_hp"));
+                plugin.ConfigManager.
             }
-            
         }
     }
 }
