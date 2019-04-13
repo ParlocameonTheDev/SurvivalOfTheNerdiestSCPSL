@@ -19,7 +19,7 @@ namespace SOTNGamemode.Events
             this.plugin = plugin;
         }
 
-        
+
         public void OnCheckRoundEnd(CheckRoundEndEvent ev)
         {
             if (Status.gamemodeEnabled)
@@ -30,37 +30,31 @@ namespace SOTNGamemode.Events
                 {
                     if (player.TeamRole.Team == Smod2.API.Team.SCP)
                     {
-                        scpAlive = true; continue;
+                        scpAlive = true;
                     }
-                    else if (player.TeamRole.Team == Team.CLASSD)
+                    if (player.TeamRole.Team == Team.CLASSD)
                     {
                         humanAlive = true;
                     }
                 }
 
-                if (ev.Server.GetPlayers().Count > 1)
+                if (scpAlive && humanAlive)
                 {
-                    if (scpAlive && humanAlive)
-                    {
-                        ev.Status = ROUND_END_STATUS.ON_GOING;
-                        return;
-                    }
-                    else if (scpAlive && humanAlive == false)
-                    {
-                        ev.Status = ROUND_END_STATUS.SCP_VICTORY;
-                        return;
-                    }
-                    else if (scpAlive == false && humanAlive)
-                    {
-                        ev.Status = ROUND_END_STATUS.CI_VICTORY;
-                        return;
-                    }
-                }
-                else
-                {
-                    ev.Status = ROUND_END_STATUS.NO_VICTORY;
+                    ev.Status = ROUND_END_STATUS.ON_GOING;
                     return;
                 }
+                else if (scpAlive && humanAlive == false)
+                {
+                    ev.Status = ROUND_END_STATUS.SCP_VICTORY;
+                    return;
+                }
+                else if (scpAlive == false && humanAlive)
+                {
+                    ev.Status = ROUND_END_STATUS.CI_VICTORY;
+                    return;
+                }
+
+
 
                 ev.Status = ROUND_END_STATUS.ON_GOING;
                 return;

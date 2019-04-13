@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Smod2;
 using Smod2.API;
@@ -25,6 +26,7 @@ namespace SOTNGamemode.Events
         {
             if (Status.gamemodeEnabled)
             {
+                Thread.Sleep(500);
                 foreach (Player player in ev.PlayerList)
                 {
                     player.ChangeRole(Role.SPECTATOR, true, false, false);

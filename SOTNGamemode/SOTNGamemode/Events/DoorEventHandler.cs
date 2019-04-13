@@ -28,7 +28,8 @@ namespace SOTNGamemode.Events
                 if (ev.Door.Name == "CHECKPOINT_ENT")
                 {
                     if (player.GetCurrentItem().ItemType == ItemType.O5_LEVEL_KEYCARD) ev.Allow = true;
-                    else if (player.TeamRole.Team == Team.SCP && !Status.lockdownActive) ev.Allow = true;
+                    else if (player.TeamRole.Team == Team.SCP && Status.lockdownActive) ev.Allow = false;
+                    else if (player.TeamRole.Team == Team.SCP && Status.lockdownActive == false) ev.Allow = true;
                     else if (player.GetBypassMode()) ev.Allow = true;
                     else ev.Allow = false;
                 }
