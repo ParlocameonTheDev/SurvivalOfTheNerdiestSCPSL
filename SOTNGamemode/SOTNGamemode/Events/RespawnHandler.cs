@@ -29,6 +29,7 @@ namespace SOTNGamemode.Events
                 {
                     player.ChangeRole(Role.SPECTATOR, true, false, false);
                 }
+                return;
             }
         }
     }
