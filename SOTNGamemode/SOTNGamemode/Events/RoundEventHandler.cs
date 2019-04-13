@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SMItem = Smod2.API.Item;
 
 namespace SOTNGamemode.Events
 {
@@ -68,12 +69,9 @@ namespace SOTNGamemode.Events
                     int spawnPIndex = 0;
                     foreach (Player player in playersToInfect)
                     {
-
                         player.ChangeRole(Role.SCP_049_2, true, false, true);
                         player.SetHealth(SOTNGamemode.pluginConfig.scp0492hp);
-                        player.Teleport(plugin.Server.Map.GetSpawnPoints(Role.SCP_049)[0]);
-                        
-
+                        player.Teleport(plugin.Server.Map.GetSpawnPoints(Role.SCP_049)[0]);          
                     }
                     Random randomSpawnIndex = new Random();
                     foreach (Player player in players)
@@ -92,6 +90,15 @@ namespace SOTNGamemode.Events
                         int tabletSpawnIndex = tabletSpawnRNG.Next(0, tabletSpawnPoints.Count);
                         map.SpawnItem(ItemType.WEAPON_MANAGER_TABLET, tabletSpawnPoints[tabletSpawnIndex], Vector.Zero);
                         tabletSpawnPoints.Remove(tabletSpawnPoints[tabletSpawnIndex]);
+                    }
+                    List<RoomType> keycardExcluded = new List<RoomType>(new RoomType[] { RoomType.HCZ_ARMORY, RoomType.SCP_939, RoomType.MICROHID, RoomType.SCP_372, RoomType.ENTRANCE_CHECKPOINT, RoomType.SCP_096 });
+                    List<Vector> keycardSpawnPoints = Functions.FetchSpawnpoints(ZoneType.HCZ, generatorExcluded);
+                    Random keyCardSpawnRNG = new Random();
+                    for (int i = 0; i < 3; i++)
+                    {
+                        int keycardSpawnIndex = keyCardSpawnRNG.Next(0, keycardSpawnPoints.Count);
+                        map.SpawnItem(ItemType.MTF_COMMANDER_KEYCARD, keycardSpawnPoints[keycardSpawnIndex], Vector.Zero);
+                        keycardSpawnPoints.Remove(keycardSpawnPoints[keycardSpawnIndex]);
                     }
                     Functions.Lockdown(true);
                     

@@ -7,6 +7,8 @@ using Smod2;
 using Smod2.EventHandlers;
 using Smod2.Events;
 using Smod2.API;
+using SMItem = Smod2.API.Item;
+using player = Smod2.API.Player;
 
 namespace SOTNGamemode.Events
 {
@@ -33,6 +35,11 @@ namespace SOTNGamemode.Events
             }
             if (ev.Damage >= ev.Player.GetHealth() && ev.DamageType == DamageType.SCP_049_2 && ev.Attacker.TeamRole.Role == Role.SCP_049_2)
             {
+                foreach (SMItem i in ev.Player.GetInventory())
+                {
+                    i.Drop();
+                }
+                Functions.SpawnRagdoll(ev.Player);
                 ev.Damage = 0;
                 ev.Player.ChangeRole(Role.SCP_049_2, true, false, false);
                 ev.Player.SetHealth(SOTNGamemode.pluginConfig.scp0492hp);

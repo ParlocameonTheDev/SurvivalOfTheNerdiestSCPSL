@@ -27,7 +27,8 @@ namespace SOTNGamemode.Events
                 {
                     Status.generatorsFinished = 0;
                     plugin.Server.Map.AnnounceCustomMessage("Lockdown disabled");
-                    plugin.Server.Map.Broadcast(10, "Lockdown disabled, LCZ IS OPEN!", false);
+                    plugin.Server.Map.Broadcast(10, "Lockdown disabled, LCZ IS OPEN!, Go get an O5 to escape!", false);
+                    Functions.Lockdown(false);
                 }
             }
         }
