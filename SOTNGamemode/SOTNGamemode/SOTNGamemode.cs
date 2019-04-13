@@ -55,7 +55,7 @@ namespace SOTNGamemode
         {
             this.AddConfig(new ConfigSetting("sotn_enabledatstart", false, true, "Enables gamemode automatically at start"));
             this.AddConfig(new ConfigSetting("sotn_scp049-2_hp", 675, true, "Enables gamemode automatically at start"));
-            this.AddConfig(new ConfigSetting("sotn_scp049-2_damage", 675, true, "Enables gamemode automatically at start"));
+            this.AddConfig(new ConfigSetting("sotn_scp049-2_damage", 45, true, "Enables gamemode automatically at start"));
         }
         private void RegisterEvents()
         {
