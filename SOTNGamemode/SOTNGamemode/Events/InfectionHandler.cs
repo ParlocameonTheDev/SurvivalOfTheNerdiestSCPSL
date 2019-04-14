@@ -29,21 +29,24 @@ namespace SOTNGamemode.Events
 
         public void OnPlayerHurt(PlayerHurtEvent ev)
         {
-            if(ev.Attacker.TeamRole.Role==Role.SCP_049_2)
+            if (Status.gamemodeRoundActive)
             {
-                ev.Damage = SOTNGamemode.pluginConfig.scp0492damage;
-            }
-            if (ev.Damage >= ev.Player.GetHealth() && ev.DamageType == DamageType.SCP_049_2 && ev.Attacker.TeamRole.Role == Role.SCP_049_2)
-            {
-                foreach (SMItem i in ev.Player.GetInventory())
+                if (ev.Attacker.TeamRole.Role == Role.SCP_049_2)
                 {
-                    i.Drop();
+                    ev.Damage = SOTNGamemode.pluginConfig.scp0492damage;
                 }
-                Functions.SpawnRagdoll(ev.Player);
-                ev.Damage = 0;
-                ev.Player.ChangeRole(Role.SCP_049_2, true, false, false);
-                ev.Player.SetHealth(SOTNGamemode.pluginConfig.scp0492hp);
-            }
-        }
+                if (ev.Damage >= ev.Player.GetHealth() && ev.DamageType == DamageType.SCP_049_2 && ev.Attacker.TeamRole.Role == Role.SCP_049_2)
+                {
+                    foreach (SMItem i in ev.Player.GetInventory())
+                    {
+                        i.Drop();
+                    }
+                    Functions.SpawnRagdoll(ev.Player);
+                    ev.Damage = 0;
+                    ev.Player.ChangeRole(Role.SCP_049_2, true, false, false);
+                    ev.Player.SetHealth(SOTNGamemode.pluginConfig.scp0492hp);
+                }
+
+            }        }
     }
 }

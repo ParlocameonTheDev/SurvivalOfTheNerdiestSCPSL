@@ -23,7 +23,7 @@ namespace SOTNGamemode.Events
 
         public void OnCheckRoundEnd(CheckRoundEndEvent ev)
         {
-            if (Status.gamemodeEnabled)
+            if (Status.gamemodeRoundActive)
             {
                 bool scpAlive = false;
                 bool humanAlive = false;
@@ -44,14 +44,16 @@ namespace SOTNGamemode.Events
                     ev.Status = ROUND_END_STATUS.ON_GOING;
                     return;
                 }
-                else if (scpAlive && humanAlive == false)
+                else if (scpAlive && humanAlive == false && ev.Round.Stats.ClassDEscaped<1)
                 {
-                    ev.Status = ROUND_END_STATUS.SCP_VICTORY;
+                    ev.Status = ROUND_END_STATUS.SCP_VICTORY; ev.Round.EndRound();
                     return;
                 }
                 else if (scpAlive == false && humanAlive)
                 {
-                    ev.Status = ROUND_END_STATUS.MTF_VICTORY;
+                    int dclassalive = ev.Server.GetPlayers().Where(p => p.TeamRole.Role==Role.CLASSD).Count();
+                    ev.Round.Stats.ClassDEscaped += dclassalive;
+                    ev.Status = ROUND_END_STATUS.OTHER_VICTORY; ev.Round.EndRound();
                     return;
                 }
 

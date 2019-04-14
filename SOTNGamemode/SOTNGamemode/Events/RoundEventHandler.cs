@@ -28,6 +28,7 @@ namespace SOTNGamemode.Events
 
             if(Status.gamemodeEnabled)
             {
+                Status.gamemodeRoundActive = true;
                 Status.HaltLCZD = true;
                 Timing.RunCoroutine(Functions.ResetLCZ());
                 List<Player> players = ev.Server.GetPlayers();
@@ -110,9 +111,10 @@ namespace SOTNGamemode.Events
 
         public void OnRoundEnd(RoundEndEvent ev)
         {
-            if(Status.gamemodeEnabled)
+            if(Status.gamemodeRoundActive)
             {
                 Status.HaltLCZD = false;
+                Status.gamemodeRoundActive = false;
             }
         }
 

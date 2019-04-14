@@ -20,7 +20,7 @@ namespace SOTNGamemode.Events
 
         public void OnGeneratorFinish(GeneratorFinishEvent ev)
         {
-            if (Status.gamemodeEnabled)
+            if (Status.gamemodeRoundActive)
             {
                 Status.generatorsFinished++;
                 if (Status.generatorsFinished == 5)

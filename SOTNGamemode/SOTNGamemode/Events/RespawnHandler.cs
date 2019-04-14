@@ -24,7 +24,7 @@ namespace SOTNGamemode.Events
 
         public void OnTeamRespawn(TeamRespawnEvent ev)
         {
-            if (Status.gamemodeEnabled)
+            if (Status.gamemodeRoundActive)
             {
                 ev.SpawnChaos = true;
                 ev.PlayerList = new List<Player>();

@@ -24,7 +24,7 @@ namespace SOTNGamemode.Events
         public void OnDoorAccess(PlayerDoorAccessEvent ev)
         {
             Player player = ev.Player;
-            if (Status.gamemodeEnabled)
+            if (Status.gamemodeRoundActive)
             {
                 if (ev.Door.Name == "CHECKPOINT_ENT")
                 {
